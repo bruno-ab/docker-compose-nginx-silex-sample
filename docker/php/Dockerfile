@@ -6,12 +6,3 @@ RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d8
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
-
-# install nginx
-RUN apt-get update
-RUN apt-get install -y nginx
-
-# config nginx
-COPY ./default.conf /etc/nginx/conf.d/
-
-CMD nginx && php-fpm
